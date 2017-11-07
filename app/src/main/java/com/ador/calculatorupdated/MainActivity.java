@@ -130,14 +130,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 display.setText("");
                 history.setText("");
                 break;
+
             case R.id.btn_alter:
                 String alterCheck = display.getText().toString();
-                if (alterCheck.indexOf('-')==-1)
+                if (alterCheck.indexOf('-')!=-1)
                 {
-                    display.setText("-"+alterCheck);
+                    alterCheck=alterCheck.replace("-","");
+                    display.setText(""+alterCheck);
+                    break;
                 }
                 else {
-                    display.setText(""+display.getText());
+                    display.setText("-"+alterCheck);
                     break;
                 }
             case R.id.btn_del:
@@ -156,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         e.printStackTrace();
                     }
                 }
-                //history.setText(text.substring(0, text.length() - 1));
                 break;
 
             case R.id.btn_plus:
@@ -164,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     display.setText("");
                 }else {
                     try {
-                        history.setText(history.getText()+display.getText().toString()+"+");
+                        history.setText(display.getText().toString()+"+");
                         value_1 = Double.parseDouble(display.getText() + "");
                         mAddition = true;
                         display.setText(null);
@@ -178,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     display.setText("");
                 }else {
                     try {
-                        history.setText(history.getText()+display.getText().toString()+"-");
+                        history.setText(display.getText().toString()+"-");
                         value_1 = Double.parseDouble(display.getText() + "");
                         mSubtract = true;
                         display.setText(null);
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     display.setText("");
                 }else {
                     try {
-                        history.setText(history.getText()+display.getText().toString()+"÷");
+                        history.setText(display.getText().toString()+"÷");
                         value_1 = Double.parseDouble(display.getText() + "");
                         mDivision = true;
                         display.setText(null);
@@ -208,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     display.setText("");
                 }else {
                     try {
-                        history.setText(history.getText()+display.getText().toString()+"x");
+                        history.setText(display.getText().toString()+"x");
                         value_1 = Double.parseDouble(display.getText() + "");
                         mMultiplication = true;
                         display.setText(null);
