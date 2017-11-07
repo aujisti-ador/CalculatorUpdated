@@ -182,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value_1 = Double.parseDouble(display.getText() + "");
                         mSubtract = true;
                         display.setText(null);
+
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
@@ -196,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value_1 = Double.parseDouble(display.getText() + "");
                         mDivision = true;
                         display.setText(null);
+
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
@@ -210,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         value_1 = Double.parseDouble(display.getText() + "");
                         mMultiplication = true;
                         display.setText(null);
+
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
@@ -243,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         if (mAddition == true){
                             value_1=value_1+value_2;
-
+                            history.setText(history.getText().toString()+display.getText().toString());
                             display.setText(value_1+"");
                             mAddition=false;
                         }
@@ -251,21 +254,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         else if (mSubtract == true){
                             value_1=value_1-value_2;
-
+                            history.setText(history.getText().toString()+display.getText().toString());
                             display.setText(value_1+"");
                             mSubtract=false;
                         }
 
                         else if (mMultiplication == true){
                             value_1=value_1*value_2;
-
+                            history.setText(history.getText().toString()+display.getText().toString());
                             display.setText(value_1+"");
                             mMultiplication=false;
                         }
 
                         else if (mDivision == true){
                             value_1=value_1/value_2;
-
+                            history.setText(history.getText().toString()+display.getText().toString());
                             display.setText(value_1+"");
                             mDivision=false;
                         }
