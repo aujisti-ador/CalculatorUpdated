@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_1,btn_2,btn_3,btn_4,btn_5,btn_6,btn_7,btn_8,btn_9,btn_0,btn_dot,btn_plus,btn_minus,btn_div,btn_mul,btn_clear,btn_alter,btn_percent,btn_del,btn_result;
 
     double value_1,value_2;
-    boolean mAddition , mSubtract ,mMultiplication ,mDivision ;
+    boolean mAddition , mSubtract ,mMultiplication ,mDivision,mPercent ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,44 +74,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.btn_0:
                 display.setText(display.getText()+"0");
-                history.setText(history.getText()+"0");
+                //history.setText(history.getText()+"0");
                 break;
             case R.id.btn_1:
                 display.setText(display.getText()+"1");
-                history.setText(history.getText()+"1");
+                //history.setText(history.getText()+"1");
                 break;
             case R.id.btn_2:
                 display.setText(display.getText()+"2");
-                history.setText(history.getText()+"2");
+                //history.setText(history.getText()+"2");
                 break;
             case R.id.btn_3:
                 display.setText(display.getText()+"3");
-                history.setText(history.getText()+"3");
+                //history.setText(history.getText()+"3");
                 break;
             case R.id.btn_4:
                 display.setText(display.getText()+"4");
-                history.setText(history.getText()+"4");
+                //history.setText(history.getText()+"4");
                 break;
             case R.id.btn_5:
                 display.setText(display.getText()+"5");
-                history.setText(history.getText()+"5");
+                //history.setText(history.getText()+"5");
                 break;
             case R.id.btn_6:
                 display.setText(display.getText()+"6");
-                history.setText(history.getText()+"6");
+                //history.setText(history.getText()+"6");
                 break;
             case R.id.btn_7:
                 display.setText(display.getText()+"7");
-                history.setText(history.getText()+"7");
+                //history.setText(history.getText()+"7");
                 break;
             case R.id.btn_8:
                 display.setText(display.getText()+"8");
-                history.setText(history.getText()+"8");
+                //history.setText(history.getText()+"8");
                 break;
             case R.id.btn_9:
-            display.setText(display.getText()+"9");
-            history.setText(history.getText()+"9");
-            break;
+                display.setText(display.getText()+"9");
+                //history.setText(history.getText()+"9");
+                break;
 
 
             case R.id.btn_dot:
@@ -132,96 +132,145 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_alter:
                 String alterCheck = display.getText().toString();
-                if (alterCheck.indexOf('-')!=-1)
+                if (alterCheck.indexOf('-')==-1)
                 {
-                    display.setText("-"+display.getText());
+                    display.setText("-"+alterCheck);
                 }
                 else {
                     display.setText(""+display.getText());
-                    history.setText(history.getText()+"");
                     break;
                 }
             case R.id.btn_del:
-                String text = display.getText().toString();
-                display.setText(text.substring(0, text.length() - 1));
-                history.setText(text.substring(0, text.length() - 1));
+                if (display.getText().toString() == null)
+                {
+                    display.setText("");
+                }
+                else {
+
+                    try {
+                        String text = display.getText().toString();
+                        String text2 = display.getText().toString();
+                        display.setText(text.substring(0, text.length() - 1));
+                        history.setText(text2.substring(0, text.length() - 1));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                //history.setText(text.substring(0, text.length() - 1));
                 break;
 
             case R.id.btn_plus:
-                if (display == null){
+                if (display.getText().toString() == null){
                     display.setText("");
                 }else {
-                    history.setText(history.getText()+"+");
-                    value_1 = Double.parseDouble(display.getText() + "");
-                    mAddition = true;
-                    display.setText(null);
+                    try {
+                        history.setText(history.getText()+display.getText().toString()+"+");
+                        value_1 = Double.parseDouble(display.getText() + "");
+                        mAddition = true;
+                        display.setText(null);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case R.id.btn_minus:
-                if (display == null){
+                if (display.getText().toString() == null){
                     display.setText("");
                 }else {
-                    history.setText(history.getText()+"-");
-                    value_1 = Double.parseDouble(display.getText() + "");
-                    mSubtract = true;
-                    display.setText(null);
+                    try {
+                        history.setText(history.getText()+display.getText().toString()+"-");
+                        value_1 = Double.parseDouble(display.getText() + "");
+                        mSubtract = true;
+                        display.setText(null);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case R.id.btn_div:
-                if (display == null){
+                if (display.getText().toString() == null){
                     display.setText("");
                 }else {
-                    history.setText(history.getText()+"÷");
-                    value_1 = Double.parseDouble(display.getText() + "");
-                    mDivision = true;
-                    display.setText(null);
+                    try {
+                        history.setText(history.getText()+display.getText().toString()+"÷");
+                        value_1 = Double.parseDouble(display.getText() + "");
+                        mDivision = true;
+                        display.setText(null);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case R.id.btn_multi:
+                if (display.getText().toString() == null){
+                    display.setText("");
+                }else {
+                    try {
+                        history.setText(history.getText()+display.getText().toString()+"x");
+                        value_1 = Double.parseDouble(display.getText() + "");
+                        mMultiplication = true;
+                        display.setText(null);
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+
+            case R.id.btn_percent:
                 if (display == null){
                     display.setText("");
                 }else {
-                    history.setText(history.getText()+"x");
-                    value_1 = Double.parseDouble(display.getText() + "");
-                    mMultiplication = true;
-                    display.setText(null);
+                    try {
+                        //history.setText(history.getText()+"%");
+                        //history.setText(history.getText()+display.getText().toString()+"%");
+                        value_1 = Double.parseDouble(display.getText() + "");
+                        value_1=value_1/100;
+                        display.setText(String.valueOf(value_1));
+                        history.setText(history.getText()+"%"+String.valueOf(value_1));
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
 
             case R.id.btn_equal:
-                if (history == null){
+                if (display == null){
                     display.setText("");
                 }else {
-                    value_2 = Double.parseDouble(display.getText() + "");
+                    try {
+                        value_2 = Double.parseDouble(display.getText() + "");
 
 
-                    if (mAddition == true){
-                        value_1=value_1+value_2;
+                        if (mAddition == true){
+                            value_1=value_1+value_2;
 
-                        display.setText(value_1+"");
-                        mAddition=false;
-                    }
+                            display.setText(value_1+"");
+                            mAddition=false;
+                        }
 
 
-                    else if (mSubtract == true){
-                        value_1=value_1-value_2;
+                        else if (mSubtract == true){
+                            value_1=value_1-value_2;
 
-                        display.setText(value_1+"");
-                        mSubtract=false;
-                    }
+                            display.setText(value_1+"");
+                            mSubtract=false;
+                        }
 
-                    else if (mMultiplication == true){
-                        value_1=value_1*value_2;
+                        else if (mMultiplication == true){
+                            value_1=value_1*value_2;
 
-                        display.setText(value_1+"");
-                        mMultiplication=false;
-                    }
+                            display.setText(value_1+"");
+                            mMultiplication=false;
+                        }
 
-                    else if (mDivision == true){
-                        value_1=value_1/value_2;
+                        else if (mDivision == true){
+                            value_1=value_1/value_2;
 
-                        display.setText(value_1+"");
-                        mDivision=false;
+                            display.setText(value_1+"");
+                            mDivision=false;
+                        }
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
                     }
                 }
                 break;
