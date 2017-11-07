@@ -226,8 +226,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     display.setText("");
                 }else {
                     try {
-                        //history.setText(history.getText()+"%");
-                        //history.setText(history.getText()+display.getText().toString()+"%");
                         value_1 = Double.parseDouble(display.getText() + "");
                         value_1=value_1/100;
                         display.setText(String.valueOf(value_1));
@@ -279,11 +277,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 break;
-
-
         }
-
-
-
     }
 }
